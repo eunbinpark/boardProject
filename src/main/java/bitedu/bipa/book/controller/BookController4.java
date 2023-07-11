@@ -21,11 +21,18 @@ public class BookController4 {
 	private BlmService2 blmService;
 
 	@RequestMapping(value="/list.do", method=RequestMethod.GET)
-	public ModelAndView list() {
+	public ModelAndView list(@RequestParam("bookSeq") String pagesize, String currentpage) {
 		System.out.println("extends");
 		ModelAndView mav = new ModelAndView();
 		ArrayList<BookCopy> list = blmService.searchBookAll();
-		mav.addObject("list",list);
+		if(pagesize==null||currentpage==null) {
+			mav.addObject("list",blmService.getpagingList(list, 9, 1));
+		}else {
+			mav.addObject("list",blmService.getpagingList(list, Integer.parseInt(pagesize), Integer.parseInt(currentpage)));
+		}
+		
+		int pagingsize = blmService.getpagingsize();
+		mav.addObject("pagingsize", pagingsize);
 		mav.setViewName("./manager/book_list");
 		return mav;
 	}
