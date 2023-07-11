@@ -33,7 +33,16 @@
     <main style="margin: 150px 200px auto 200px;">
         <div class="mainwrapper" style="display: flex; justify-content: space-between;">
             <h1 style="margin-bottom: 20px; font-weight: 700;">자유 게시판</h1>
-            <a href="#" style="text-decoration: none; color: black; font-size: 18px; font-weight: 700; margin-top: 30px; margin-right: 100px;">글쓰기</a>
+            <a href="#" style="text-decoration: none; color: black; font-size: 18px; font-weight: 700; margin-top: 22px; margin-right: 183px;">글쓰기</a>
+            <form class="d-flex" role="search" style="width: 390px; height: 45px; ">
+                <select style="border: none; margin-right: 10px; font-weight: 600;">
+                    <option>인기순</option>
+                    <option>최신순</option>
+                    <option>조회순</option>
+                </select>
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit" style="width: 85px; font-weight: 600;">검색</button>
+            </form>
         </div>
         <div class="table-wrapper">
             <table class="table table-hover" style="text-align: center;">
@@ -114,6 +123,5 @@
             </table>
         </div>
     </main>
-
 </body>
 </html>
