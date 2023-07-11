@@ -15,6 +15,11 @@ public class BlmService2 {
 	private BlmDAO2 dao;
 	private int totalPage;
 	
+	private boolean hasPreviousPageNav;	// 이전페이지 
+	private boolean hasNextPageNav;		// 다음페이지
+	private boolean hasFirstPageNav;	// 맨 첫번째 페이지
+	private boolean hasLastPageNav;		// 맨 마지막 페이지
+	
 	public int getpagingsize() {
 		return totalPage;
 	}
