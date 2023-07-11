@@ -20,11 +20,12 @@ public class BookController4 {
 	@Autowired
 	private BlmService2 blmService;
 
-	@RequestMapping(value="/list.do", method=RequestMethod.GET)
-	public ModelAndView list(@RequestParam("bookSeq") String pagesize, String currentpage) {
-		System.out.println("extends");
+	@RequestMapping(value="/list1.do", method=RequestMethod.GET)
+	public ModelAndView list(@RequestParam("pagesize") String pagesize,@RequestParam("currentpage") String currentpage) {
+		System.out.println("springdb");
 		ModelAndView mav = new ModelAndView();
 		ArrayList<BookCopy> list = blmService.searchBookAll();
+		
 		if(pagesize==null||currentpage==null) {
 			mav.addObject("list",blmService.getpagingList(list, 9, 1));
 		}else {
@@ -32,6 +33,26 @@ public class BookController4 {
 		}
 		
 		int pagingsize = blmService.getpagingsize();
+		
+		mav.addObject("pagingsize", pagingsize);
+		mav.setViewName("./manager/book_list");
+		return mav;
+	}
+	@RequestMapping(value="/list.do", method=RequestMethod.GET)
+	public ModelAndView list() {
+		System.out.println("springdb");
+		ModelAndView mav = new ModelAndView();
+		ArrayList<BookCopy> list = blmService.searchBookAll();
+		String pagesize = "9";
+		String currentpage= "1";
+		if(pagesize==null||currentpage==null) {
+			mav.addObject("list",blmService.getpagingList(list, 9, 1));
+		}else {
+			mav.addObject("list",blmService.getpagingList(list, Integer.parseInt(pagesize), Integer.parseInt(currentpage)));
+		}
+		
+		int pagingsize = blmService.getpagingsize();
+		
 		mav.addObject("pagingsize", pagingsize);
 		mav.setViewName("./manager/book_list");
 		return mav;
