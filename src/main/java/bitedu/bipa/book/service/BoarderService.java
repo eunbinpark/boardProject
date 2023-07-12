@@ -1,6 +1,6 @@
 package bitedu.bipa.book.service;
 
-<<<<<<< HEAD
+
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +32,7 @@ public class BoarderService {
 //       flag = dao.poster_regist(poster);
 //       return flag;
 //    }
-=======
-public class BoarderService {
->>>>>>> 05766f665c9df7ebad5708741a3f73052b1cbe3d
+
+
 
 }

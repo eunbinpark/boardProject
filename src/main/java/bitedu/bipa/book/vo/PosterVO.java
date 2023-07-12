@@ -1,10 +1,7 @@
 package bitedu.bipa.book.vo;
 
-<<<<<<< HEAD
+
 import java.sql.Timestamp;
-=======
-import com.google.protobuf.Timestamp;
->>>>>>> 05766f665c9df7ebad5708741a3f73052b1cbe3d
 
 public class PosterVO {
 	private int poster_pk;
