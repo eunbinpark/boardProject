@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import bitedu.bipa.book.utils.ConnectionManager;
-import bitedu.bipa.book.vo.BookCopy;
+import bitedu.bipa.book.vo.BoardVO;
 
 @Repository("blmDAO2")
 public class BlmDAO2 {
@@ -20,83 +20,81 @@ public class BlmDAO2 {
 	@Autowired
 	private DataSource dataSource;
 	
-	public boolean insertBook(BookCopy copy){
-		boolean flag = false;
-		String sql1 = "insert into book_info values (?,?,?,?)";
-		String sql2 = "insert into book_copy(book_isbn) values (?)";
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		System.out.println(copy);
-		try {
-			con = dataSource.getConnection();
-			con.setAutoCommit(false);
-			pstmt = con.prepareStatement(sql1);
-			pstmt.setString(1, copy.getIsbn());
-			pstmt.setString(2, copy.getTitle());
-			pstmt.setString(3, copy.getAuthor());
-			pstmt.setTimestamp(4, copy.getPublishDate());
-			int affectedCount = pstmt.executeUpdate();
-			if(affectedCount>0) {
-				pstmt = con.prepareStatement(sql2);
-				pstmt.setString(1, copy.getIsbn());
-				affectedCount = pstmt.executeUpdate();
-				if(affectedCount>0) {
-					flag = true;
-					con.commit();
-					System.out.println("commit");
-				}
-			} else {
-				con.rollback();
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			try {
-				con.rollback();
-				System.out.println("rollback");
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		} finally {
-			try {
-				con.setAutoCommit(true);
-				con.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-		
-		return flag;
-	}
+//	public boolean insertBook(BoardVO bvo){
+//		boolean flag = false;
+//		String sql1 = "insert into book_info values (?,?,?,?)";
+//		String sql2 = "insert into book_copy(book_isbn) values (?)";
+//		Connection con = null;
+//		PreparedStatement pstmt = null;
+//		System.out.println(bvo);
+//		try {
+//			con = dataSource.getConnection();
+//			con.setAutoCommit(false);
+//			pstmt = con.prepareStatement(sql1);
+//			pstmt.setString(1, bvo.getIsbn());
+//			pstmt.setString(2, bvo.getTitle());
+//			pstmt.setString(3, bvo.getAuthor());
+//			pstmt.setTimestamp(4, bvo.getPublishDate());
+//			int affectedCount = pstmt.executeUpdate();
+//			if(affectedCount>0) {
+//				pstmt = con.prepareStatement(sql2);
+//				pstmt.setString(1, bvo.getIsbn());
+//				affectedCount = pstmt.executeUpdate();
+//				if(affectedCount>0) {
+//					flag = true;
+//					con.commit();
+//					System.out.println("commit");
+//				}
+//			} else {
+//				con.rollback();
+//			}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			try {
+//				con.rollback();
+//				System.out.println("rollback");
+//			} catch (SQLException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//		} finally {
+//			try {
+//				con.setAutoCommit(true);
+//				con.close();
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//		
+//		
+//		return flag;
+//	}
 	
-	public ArrayList<BookCopy> selectBookAll(){
-		ArrayList<BookCopy> list = null;
-		list = new ArrayList<BookCopy>();
-		BookCopy copy = null;
-		StringBuilder sb = new StringBuilder("select a.*, b.* from book_info a ");
-		sb.append("inner join book_copy b on a.book_isbn=b.book_isbn order by book_seq");
+	public ArrayList<BoardVO> selectBookAll(){
+		ArrayList<BoardVO> list = null;
+		list = new ArrayList<BoardVO>();
+		BoardVO bvo = null;
+		StringBuilder sb = new StringBuilder("SELECT * FROM bitedu.poster");
 		String sql = sb.toString();
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		System.out.println(copy);
+		System.out.println(bvo);
 		try {
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				copy = new BookCopy();
-				copy.setIsbn(rs.getString(1));
-				copy.setTitle(rs.getString(2));
-				copy.setAuthor(rs.getString(3));
-				copy.setPublishDate(rs.getTimestamp(4));
-				copy.setBookSeq(rs.getInt(5));
-				copy.setBookPosition(rs.getString(6));
-				copy.setBookStaus(rs.getString(7));
-				list.add(copy);
+				bvo = new BoardVO();
+				
+				bvo.setPosterPk(rs.getInt(1));
+				bvo.setTitle(rs.getString(2));
+				bvo.setAuthor(rs.getString(3));
+				bvo.setWrite_date(rs.getTimestamp(4));
+				bvo.setViewNum(rs.getInt(6));
+				list.add(bvo);
 			}
 			con.close();
 		} catch (SQLException e) {
@@ -129,66 +127,66 @@ public class BlmDAO2 {
 		
 		return flag;
 	}
-	public BookCopy selectBook(int parseInt) {
-		// TODO Auto-generated method stub
-		BookCopy copy = null;
-		StringBuilder sb = new StringBuilder("select a.*, b.* from book_info a ");
-		sb.append("inner join book_copy b on a.book_isbn=b.book_isbn ");
-		sb.append("where b.book_seq = ?");
-		String sql = sb.toString();
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		System.out.println(copy);
-		try {
-			con = dataSource.getConnection();
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, parseInt);
-			ResultSet rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				copy = new BookCopy();
-				copy.setIsbn(rs.getString(1));
-				copy.setTitle(rs.getString(2));
-				copy.setAuthor(rs.getString(3));
-				copy.setPublishDate(rs.getTimestamp(4));
-				copy.setBookSeq(rs.getInt(5));
-				copy.setBookPosition(rs.getString(6));
-				copy.setBookStaus(rs.getString(7));
-			}
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return copy;
-	}
-	public boolean updateBook(BookCopy copy) {
-		// TODO Auto-generated method stub
-		boolean flag = false;
-		String sql = "update book_info set book_title = ?, book_author=?, book_published_date = ? where book_isbn = ?";
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		System.out.println(copy);
-		try {
-			con = dataSource.getConnection();
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, copy.getTitle());
-			pstmt.setString(2, copy.getAuthor());
-			pstmt.setTimestamp(3, copy.getPublishDate());
-			//pstmt.setInt(4, copy.getBookSeq());
-			pstmt.setString(4, copy.getIsbn());
-			int affectedCount = pstmt.executeUpdate();
-			if(affectedCount>0) {
-				flag = true;
-			}
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return flag;
-	}
+//	public BookCopy selectBook(int parseInt) {
+//		// TODO Auto-generated method stub
+//		BookCopy copy = null;
+//		StringBuilder sb = new StringBuilder("select a.*, b.* from book_info a ");
+//		sb.append("inner join book_copy b on a.book_isbn=b.book_isbn ");
+//		sb.append("where b.book_seq = ?");
+//		String sql = sb.toString();
+//		Connection con = null;
+//		PreparedStatement pstmt = null;
+//		System.out.println(copy);
+//		try {
+//			con = dataSource.getConnection();
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setInt(1, parseInt);
+//			ResultSet rs = pstmt.executeQuery();
+//			
+//			while(rs.next()) {
+//				copy = new BookCopy();
+//				copy.setIsbn(rs.getString(1));
+//				copy.setTitle(rs.getString(2));
+//				copy.setAuthor(rs.getString(3));
+//				copy.setPublishDate(rs.getTimestamp(4));
+//				copy.setBookSeq(rs.getInt(5));
+//				copy.setBookPosition(rs.getString(6));
+//				copy.setBookStaus(rs.getString(7));
+//			}
+//			con.close();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return copy;
+//	}
+//	public boolean updateBook(BookCopy copy) {
+//		// TODO Auto-generated method stub
+//		boolean flag = false;
+//		String sql = "update book_info set book_title = ?, book_author=?, book_published_date = ? where book_isbn = ?";
+//		Connection con = null;
+//		PreparedStatement pstmt = null;
+//		System.out.println(copy);
+//		try {
+//			con = dataSource.getConnection();
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setString(1, copy.getTitle());
+//			pstmt.setString(2, copy.getAuthor());
+//			pstmt.setTimestamp(3, copy.getPublishDate());
+//			//pstmt.setInt(4, copy.getBookSeq());
+//			pstmt.setString(4, copy.getIsbn());
+//			int affectedCount = pstmt.executeUpdate();
+//			if(affectedCount>0) {
+//				flag = true;
+//			}
+//			con.close();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		return flag;
+//	}
 }
 
 
