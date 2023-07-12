@@ -1,138 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>도서 등록</title>
-<style>
-        table, td, th {
-            border : 1px solid black;
-            border-collapse: collapse;
-            margin: 20px auto;
-        }
-        td {
-            width: 150px;
-            height: 50px;
-            padding: 5px;
-            font-size: 20px;
-            /* text-align: center; */
-        }
-
-        input , select {
-            font-size: 20px;
-        }
-
-        button {
-            font-size: 15px;
-            margin: 5px;
-        }
-        
-        
-        #sending {
-        	text-align: center;
-        }
-        
-        
-        #form {
-        	font-size: 30px;
-        }
-
-    </style>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-	<script type="text/javascript">
-	$(document).ready(function(){
-		$('#go_book_regist').on('click',function(){
-			$('#frm').attr('action','regist.do');
-			
-			$('#frm').submit();
-		});
-	});
-	
-	$(document).ready(function(){
-		$('#go_book_list').on('click',function(){
-			alert('go');
-			$('#frm').attr('action','list.do');
-			$('#frm').attr('method','get');
-			$('#frm').submit();
-		});
-	});
-	</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판 글쓰기</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </head>
-<body>
-<%-- <% String cmd = request.getParameter("cmd"); %>
-<%=cmd.equals("success")?"<script>alert('hello');</script>":""%> --%>
-<form action="" method="post" id="frm">
-    <table>
-        <tr><th colspan="4" id="form">도서등록</th></tr>
-        <tr><th>구분</th><th class="data_ui" colspan="2">데이터입력</th><th>비고</th></tr>
-        <tr>
-            <td>도서번호</td>
-            <td colspan="2">
-            	<input type="text" id="book_seq" name="bookSeq" disabled="disabled">
-            </td>
-            <td id="message">자동생성</td></tr>
-            
-        <tr>
-        	<td>ISBN</td>
-        	<td colspan="2">
-        		<input type="text" id="isbn" name="isbn">
-        	</td>
-        	<td>
-        		<input type="hidden" id="flag" value="false">
-        	</td>
-        </tr>
-        <tr>
-        	<td>도서명</td>
-        	<td colspan="2">
-        		<input type="text" id="book_title" name="title">
-        	</td><td></td>
-        </tr>
-        <tr>
-        	<td>저자/역자</td>
-        	<td colspan="2">
-        		<input type="text" id="author" name="author">
-        	</td><td></td>
-        </tr>
+<body style="margin: 0; padding: 0; font-family: 'Nanum Gothic Coding', monospace;">
+     <!-- 상단 헤더-->
+     <header>
+        <nav class="navbar navbar-expand-lg bg-dark">
+            <div class="container-fluid" style="margin-right: 150px;">
+              <div class="collapse navbar-collapse" id="navbarText" style="justify-content: flex-end;">
+                <a class="navbar-brand" href="#" style="color: #fff; font-weight: 600;">로그인</a>
+                <a class="navbar-brand" href="#" style="color: #fff; font-weight: 600;">회원가입</a>
+              </div>
+            </div>
+          </nav>
+    </header>
+    <!-- 본문 -->
+    <main style="margin: 150px 200px auto 400px;">
+        <h1 style="margin-bottom: 20px; font-weight: 700; margin-left: 57px;">글쓰기</h1>
 
-        <tr>
-        	<td>출판일</td>
-        	<td colspan="2">
-        		<input type="text" id="publish_date" size="35" name="publishDate">
-        	</td>
-        	<td></td>
-        <tr>
-        <tr>
-        	<td>도서위치</td>
-        	<td colspan="2">
-        		<select name="bookPosition" disabled="disabled">
-        			<option value='BS'>--도서 위치--
-        			<option value='BS-001' selected>일반서가
-        			<option value='BS-002'>예약서가
-        			<option value='BS-'>회원
-        		</select>
-        	</td>
-        	<td>기본값삽입</td>
-        <tr>
-        <tr>
-        	<td>도서상태</td>
-        	<td colspan="2">
-        		<select name="bookStaus" disabled="disabled">
-        			<option value='BM'>--도서 상태--
-        			<option value='BM-001' selected>도서대출서비스
-        			<option value='BM-002'>도서수선
-        			<option value='BM-003'>도서저장고
-        		</select>
-        	</td>
-        	<td>기본값삽입</td>
-        <tr>
-        <tr>
-        	<td colspan="4" id="sending">
-        		<input type="submit" value="도서등록" id="go_book_regist"> 
-        		<input type="submit" value="도서리스트" id="go_book_list">
-        	</td>
-        </tr>
-    </table>
-</form>
+        <div class="mainwrapper">
+            <div class="inputbox" style="width: 1000px; height: 50px; font-size: 18px; font-weight: 600; margin-left: 17px;">
+                <span style="margin-left: 18px;">제목 : </span><input type="text" id="title" name="title" value="제목을 입력하세요" style="width: 90%; height: 100%; border: none; border-bottom: 2px solid lightgray;">
+            </div>
+            <div class="writecontent" style="font-size: 18px; margin-top: 20px; font-weight: 600; margin-left: 17px">
+                작성자 : <input type="text" style="border: none;" id="writer" name="writer" value="">
+            </div>
+            <div class="regdcontent" style="font-size: 18px; margin-top: 20px; font-weight: 600; margin-left: 17px">
+                작성일 : <input type="text" style="border: none;" id="regdate" name="regdate" value="">
+            </div>
+            <div class="contentbox" style="margin-top: 20px; font-size: 17px; margin-left: 97px;">
+                <textarea rows="12" cols="97" style="border: 2px solid lightgray;">내용을 입력하세요</textarea>
+            </div>
+        </div>
+        <div class="btnwrapper" style="text-align: right; margin-right: 330px;">
+            <button type="button" style="width: 90px; height: 38px; border-radius: 8px; border: none; font-weight: 600;">취소</button>
+            <button type="submit" style="width: 90px; height: 38px; border-radius: 8px; border: none; font-weight: 600; background-color: #0C98FD; color: #fff;">등록</button>
+        </div>
+    </main>
 </body>
 </html>
