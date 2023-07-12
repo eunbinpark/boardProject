@@ -1,4 +1,4 @@
-<%@page import="bitedu.bipa.book.vo.BookCopy"%>
+<%@page import="bitedu.bipa.book.vo.PosterVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -47,69 +47,17 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td style="text-align: left;">게시판1</td>
-                      <td>홍길동</td>
-                      <td>23.07.11</td>
-                      <td>13</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td style="text-align: left;">게시판2</td>
-                      <td>홍길동</td>
-                      <td>23.07.12</td>
-                      <td>27</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td style="text-align: left;">게시판3</td>
-                        <td>홍길동</td>
-                        <td>23.07.13</td>
-                        <td>16</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td style="text-align: left;">게시판4</td>
-                        <td>홍길동</td>
-                        <td>23.07.18</td>
-                        <td>14</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td style="text-align: left;">게시판5</td>
-                        <td>홍길동</td>
-                        <td>23.07.20</td>
-                        <td>6</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">6</th>
-                        <td style="text-align: left;">게시판6</td>
-                        <td>홍길동</td>
-                        <td>23.07.23</td>
-                        <td>25</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">7</th>
-                        <td style="text-align: left;">게시판7</td>
-                        <td>홍길동</td>
-                        <td>23.07.18</td>
-                        <td>14</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">8</th>
-                        <td style="text-align: left;">게시판8</td>
-                        <td>홍길동</td>
-                        <td>23.07.20</td>
-                        <td>6</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">9</th>
-                        <td style="text-align: left;">게시판9</td>
-                        <td>홍길동</td>
-                        <td>23.07.23</td>
-                        <td>25</td>
-                    </tr>
+                  	<c:forEach var="copy" items="${list}">
+                  		<tr>
+                  			<td>${copy.poster_pk }</td>
+                  			<td><a href="detail.do?posterPk=${copy.poster_pk}">${copy.title }</a></td>
+                  			<td>${copy.author }</td>
+                  			<td><fmt:formatDate value="${copy.writer_date}" pattern="yyyy-MM-dd"/> </td>
+                  			<td>${copy.view_num }</td>
+                  		</tr>
+                  	</c:forEach>
+                  		<tr><td colspan="5"><a href="#"><button>등록</button></a></td></tr>
+                  	
                   </tbody>
             </table>
         </div>
