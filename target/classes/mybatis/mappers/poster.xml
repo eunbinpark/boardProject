@@ -6,19 +6,26 @@
  		<id property="poster_pk" column="poster_pk"></id>
  		<result property="title" column="title"/>
  		<result property="author" column="author"/>
- 		<result property="writer_date" column="writer_date"/>
+ 		<result property="contents" column="contents"/>
+ 		<result property="writer_date" column="write_date"/>
  		<result property="update_date" column="update_date"/>
  		<result property="view_num" column="view_num"/>
  	</resultMap>
  	
  	<select id="selectAllPoster" resultMap = "posterMap" resultType="posterVO">
  		<![CDATA[ 
- 		select * from poster order by poster_pk asc
- 		
- 		]]>
- 		
- 	
+ 			select * from poster order by poster_pk asc
+ 		]]> 	
  	</select>
- 
+	<select id="registPoster" parameterType="posterVO">
+ 		<![CDATA[ 
+ 			insert into poster (title, author,contents) values(#{title}, #{author},#{contents})
+ 		]]> 	
+ 	</select> 
+ 	<select id="update_poster" parameterType="posterVO">
+ 		<![CDATA[ 
+ 			update poster set title = #{title}, contents = #{contents} where poster_pk = #{poster_pk};
+ 		]]> 	
+ 	</select> 
  
  </mapper>

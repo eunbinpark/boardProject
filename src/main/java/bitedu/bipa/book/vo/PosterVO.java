@@ -7,9 +7,17 @@ public class PosterVO {
 	private int poster_pk;
 	private String title;
 	private String author;
+	private String contents;
+	
 	private Timestamp writer_date;
 	private Timestamp update_date;
 	private int view_num;
+	public String getContents() {
+		return contents;
+	}
+	public void setContents(String contents) {
+		this.contents = contents;
+	}
 	public int getPoster_pk() {
 		return poster_pk;
 	}

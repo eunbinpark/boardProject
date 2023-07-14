@@ -27,12 +27,12 @@ public class BoarderService {
 //		return board;
 //	}
 //	
-//	public boolean registBook(PosterVO poster) {
-//       boolean flag = false;
-//       flag = dao.poster_regist(poster);
-//       return flag;
-//    }
-
+	public void registposter(PosterVO poster) {
+       dao.poster_regist(poster);
+    }
+	public boolean updateposter(PosterVO poster) {
+		return dao.poster_update(poster);
+	}
 
 
 }

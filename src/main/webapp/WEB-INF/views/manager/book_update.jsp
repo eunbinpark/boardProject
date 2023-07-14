@@ -1,4 +1,4 @@
-<%@page import="bitedu.bipa.book.vo.BookCopy"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -74,7 +74,7 @@
 </head>
 <body>
 <%
-	BookCopy copy = (BookCopy)request.getAttribute("copy");
+	//BookCopy copy = (BookCopy)request.getAttribute("copy");
 %>
 <form action="" method="post" id='frm'>
     <table>
