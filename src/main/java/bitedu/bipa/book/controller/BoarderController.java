@@ -28,7 +28,7 @@ public class BoarderController {
 	}
 	
 	
-	// 리스트
+	// 由ъ뒪�듃
 	@RequestMapping(value="/list.do", method=RequestMethod.GET)
 	public ModelAndView list() {
 		System.out.println("list");
@@ -73,10 +73,10 @@ public class BoarderController {
 	loginUser = userService.get_loginUser(ID, pw);
 	  
 	if(loginUser == null) {
-	   System.out.println("로그인 실패");
+	   System.out.println("濡쒓렇�씤 �떎�뙣");
 	   mav.setViewName("./manager/login");
 	}else {
-	   System.out.println("로그인 성공");
+	   System.out.println("濡쒓렇�씤 �꽦怨�");
 	   mav.setViewName("redirect:list.do");
 	    }
 	    return mav;
@@ -97,9 +97,9 @@ public class BoarderController {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("update");
 		if(boardService.updateposter(poster)) {
-			System.out.println("성공");
+			System.out.println("�꽦怨�");
 		}else {
-			System.out.println("실패");
+			System.out.println("�떎�뙣");
 		}
 		
 		mav.setViewName("redirect:list.do");
@@ -111,8 +111,10 @@ public class BoarderController {
 		int poster_pk_int = Integer.parseInt(poster_pk);
 		System.out.println(poster_pk_int);
 		PosterVO selectPoster = boardService.selectPoster(poster_pk_int);
-		mav.addObject("select_poster", selectPoster);
 		mav.addObject("loginuser", loginUser);
+		if(boardService.PlusViewNum(poster_pk_int)) {
+			mav.addObject("select_poster", selectPoster);
+		}
 		if(selectPoster.getAuthor().equals(loginUser.getUser_id())) {
 			
 			mav.addObject("flag", "true");
