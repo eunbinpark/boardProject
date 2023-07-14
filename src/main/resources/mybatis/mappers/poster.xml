@@ -27,5 +27,9 @@
  			update poster set title = #{title}, contents = #{contents} where poster_pk = #{poster_pk};
  		]]> 	
  	</select> 
- 
+ 	<select id="selectPoster" resultMap = "posterMap" resultType="posterVO" parameterType="java.lang.Integer">
+ 		<![CDATA[ 
+ 			select * from poster where poster_pk = #{posterpk}
+ 		]]> 	
+ 	</select> 
  </mapper>

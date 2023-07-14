@@ -33,6 +33,9 @@ public class BoarderService {
 	public boolean updateposter(PosterVO poster) {
 		return dao.poster_update(poster);
 	}
+	public PosterVO selectPoster(int posterpk) {
+		return dao.selectPosterVO(posterpk);
+	}
 
 
 }

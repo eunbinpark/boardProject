@@ -71,5 +71,8 @@ public class BoarderDAO {
 		}
 		return flag;
 	}
+	public PosterVO selectPosterVO(int posterpk) {
+		return sqlSession.selectOne("mapper.poster.selectPoster", posterpk);
+	}
 
 }

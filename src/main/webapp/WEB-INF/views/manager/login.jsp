@@ -8,8 +8,9 @@
     <title>로그인</title>
 </head>
 <body style="margin: 0; padding: 0; font-family: 'Nanum Gothic Coding', monospace; font-size: 20px; background: #F7FBFF;">
+
     <div class="main" style="margin: 200px 800px;">
-    	<form action="" method="post" id='frm'>
+    	<form action="login.do" method="post" id='frm'>
 	        <div class="idwrapper" style="font-size: 20px; font-weight: 600; width: 300px; height: 44px;">
 	            <input type="text" style="width: 100%; height: 78%; border: 2px solid #0C98FD; font-size: 17px;" id="user_id" name="user_id" value="" placeholder="아이디">
 	        </div>

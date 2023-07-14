@@ -50,7 +50,7 @@
                   	<c:forEach var="copy" items="${list}">
                   		<tr>
                   			<td>${copy.poster_pk }</td>
-                  			<td><a href="detail.do?posterPk=${copy.poster_pk}">${copy.title }</a></td>
+                  			<td><a href="view_detail.do?posterPk=${copy.poster_pk}">${copy.title }</a></td>
                   			<td>${copy.author }</td>
                   			<td><fmt:formatDate value="${copy.writer_date}" pattern="yyyy-MM-dd"/> </td>
                   			<td>${copy.view_num }</td>

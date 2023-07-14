@@ -42,14 +42,11 @@ public class BoarderController {
 	public ModelAndView view_regist() {
 		System.out.println("view_regist");
 		ModelAndView mav = new ModelAndView();
-		loginUser.setUser_id("user1");
-		loginUser.setUser_pw("user1");
-		loginUser.setUser_name("qwe");
-		mav.addObject(" ",loginUser);
+		mav.addObject("login_user",loginUser);
 		mav.setViewName("./manager/poster_regist");
 		return mav;
 	}
-	@RequestMapping(value="regist.do", method=RequestMethod.POST)
+	@RequestMapping(value="regist.do", method=RequestMethod.GET)
 	public ModelAndView regist(@ModelAttribute("poster") PosterVO poster) {
 		System.out.println("regist");
 		System.out.println(poster.getAuthor());
@@ -59,7 +56,7 @@ public class BoarderController {
 		mav.setViewName("redirect:list.do");
 		return mav;
 	}
-	@RequestMapping(value="/view_login.do", method=RequestMethod.POST)
+	@RequestMapping(value="/view_login.do", method=RequestMethod.GET)
 	public ModelAndView view_login_User() {
 	   ModelAndView mav = new ModelAndView();
 	   
@@ -70,7 +67,8 @@ public class BoarderController {
 	@RequestMapping(value="/login.do", method=RequestMethod.POST)
 	public ModelAndView login_User(@RequestParam("user_id") String ID, @RequestParam("user_pw") String pw) {
 	ModelAndView mav = new ModelAndView();
-	UserService userService = new UserService();
+	System.out.println(ID);
+	System.out.println(pw);
 	loginUser = userService.get_loginUser(ID, pw);
 	  
 	if(loginUser == null) {
@@ -78,7 +76,7 @@ public class BoarderController {
 	   mav.setViewName("./manager/login");
 	}else {
 	   System.out.println("로그인 성공");
-	   mav.setViewName("./manager/border_list");
+	   mav.setViewName("redirect:list.do");
 	    }
 	    return mav;
 	}
@@ -101,6 +99,22 @@ public class BoarderController {
 		}
 		
 		mav.setViewName("redirect:list.do");
+		return mav;
+	}
+	@RequestMapping(value="/view_detail.do", method=RequestMethod.GET)
+	public ModelAndView view_detail(@RequestParam("posterPk") String poster_pk) {
+		ModelAndView mav = new ModelAndView();
+		int poster_pk_int = Integer.parseInt(poster_pk);
+		System.out.println(poster_pk_int);
+		PosterVO selectPoster = boardService.selectPoster(poster_pk_int);
+		mav.addObject("select_poster", selectPoster);
+		
+		if(selectPoster.getAuthor().equals(loginUser.getUser_id())) {
+			
+			mav.addObject("flag", "true");
+		}
+		mav.setViewName("./manager/poster_detail");
+		
 		return mav;
 	}
 	

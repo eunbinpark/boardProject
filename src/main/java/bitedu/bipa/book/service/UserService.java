@@ -16,8 +16,10 @@ public class UserService {
 	UserDAO userdao;
 	   
 	public UserVO get_loginUser(String ID, String PW) {
+		System.out.println("22222");
+	      user = userdao.get_loginUser(ID, PW);
 	      
-		return userdao.get_loginUser(ID, PW);      
+		return user;
 	 }
 	
 }
