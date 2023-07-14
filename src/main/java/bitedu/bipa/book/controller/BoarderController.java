@@ -15,7 +15,6 @@ import bitedu.bipa.book.service.UserService;
 import bitedu.bipa.book.vo.PosterVO;
 import bitedu.bipa.book.vo.UserVO;
 @Controller("boarderController")
-//@RequestMapping("springdb")
 public class BoarderController {
 
 	private UserVO loginUser;	
@@ -46,7 +45,7 @@ public class BoarderController {
 		loginUser.setUser_id("user1");
 		loginUser.setUser_pw("user1");
 		loginUser.setUser_name("qwe");
-		mav.addObject("login_user",loginUser);
+		mav.addObject(" ",loginUser);
 		mav.setViewName("./manager/poster_regist");
 		return mav;
 	}
@@ -104,25 +103,6 @@ public class BoarderController {
 		mav.setViewName("redirect:list.do");
 		return mav;
 	}
-	
-//	// 제목 검색 후 List
-//	@RequestMapping(value="/search.do", method=RequestMethod.GET)
-//	public ModelAndView search(@RequestParam("title") String title) {
-//		System.out.println("extends");
-//		ModelAndView mav = new ModelAndView();
-//		ArrayList<PosterVO> list = boardService.searchBoard(title);
-//		mav.addObject("list",list);
-//		mav.setViewName("./manager/board_search");
-//		return mav;
-//	}
-//	
-//	   
-//	
-//	   
-	   
-//	   
-	   
-//	
 	
 	
 }
