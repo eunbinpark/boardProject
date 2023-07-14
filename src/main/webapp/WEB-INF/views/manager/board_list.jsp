@@ -33,7 +33,7 @@
     <main style="margin: 150px 200px auto 200px;">
         <div class="mainwrapper" style="display: flex; justify-content: space-between;">
             <h1 style="margin-bottom: 20px; font-weight: 700;">자유 게시판</h1>
-            <a href="#" style="text-decoration: none; color: black; font-size: 18px; font-weight: 700; margin-top: 30px; margin-right: 100px;">글쓰기</a>
+            <a href="view_regist.do" style="text-decoration: none; color: black; font-size: 18px; font-weight: 700; margin-top: 30px; margin-right: 100px;">글쓰기</a>
         </div>
         <div class="table-wrapper">
             <table class="table table-hover" style="text-align: center;">
@@ -56,7 +56,6 @@
                   			<td>${copy.view_num }</td>
                   		</tr>
                   	</c:forEach>
-                  		<tr><td colspan="5"><a href="view_regist.do"><button>등록</button></a></td></tr>
                   	
                   </tbody>
             </table>
