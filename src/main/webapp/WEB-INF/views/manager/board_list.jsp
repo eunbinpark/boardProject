@@ -56,7 +56,7 @@
                   			<td>${copy.view_num }</td>
                   		</tr>
                   	</c:forEach>
-                  		<tr><td colspan="5"><a href="#"><button>등록</button></a></td></tr>
+                  		<tr><td colspan="5"><a href="view_regist.do"><button>등록</button></a></td></tr>
                   	
                   </tbody>
             </table>

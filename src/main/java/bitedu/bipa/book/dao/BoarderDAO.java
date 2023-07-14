@@ -60,36 +60,16 @@ public class BoarderDAO {
 //	}	   
 //	   
 //	   
-//	public boolean poster_regist(PosterVO poster) {
-//      boolean flag = false;
-//      String sql = new StringBuilder().append("INSERT INTO POSTER (title, author, write_date)")
-//                              .append("VALUES(?,?,now())").toString();
-//      Connection con = null;
-//      PreparedStatement pstmt = null;
-//      try {
-//         con = dataSource.getConnection();
-//         pstmt = con.prepareStatement(sql);
-//         pstmt.setString(1,poster.getTitle());
-//         pstmt.setString(2, poster.getAuthor());
-//         int insert_num = pstmt.executeUpdate();
-//         if(insert_num>0) {
-//            System.out.println("데이터 베이스 반영 성공");
-//            flag = true;
-//         }else {
-//            System.out.println("데이터 베이스 insert 실패");
-//         }
-//      }catch(SQLException e) {
-//         e.printStackTrace();
-//         try {
-//            con.rollback();
-//            System.out.println("rollback");
-//         } catch (SQLException e1) {
-//            // TODO Auto-generated catch block
-//            e1.printStackTrace();
-//         }
-//      }
-//      
-//      return flag;
-//   }
+	public void poster_regist(PosterVO poster) {
+      sqlSession.insert("mapper.poster.registPoster", poster);
+   }
+	public boolean poster_update(PosterVO poster) {
+		boolean flag = false;
+		
+		if(sqlSession.update("mapper.poster.update_poster")>0) {
+			flag = true;
+		}
+		return flag;
+	}
 
 }

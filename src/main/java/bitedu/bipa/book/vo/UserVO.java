@@ -1,10 +1,26 @@
 package bitedu.bipa.book.vo;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class UserVO {
 	private int user_pk;
 	private String user_id;
 	private String user_pw;
 	private String user_name;
+	
+	public UserVO() {
+		
+	}
+	public UserVO(String id, String pw) {
+		user_id = id;
+		user_pw = pw;
+	}
+	public UserVO(String id, String pw, String name) {
+		this(id,pw);
+		user_name=name;
+	}
+	
 	public int getUser_pk() {
 		return user_pk;
 	}
