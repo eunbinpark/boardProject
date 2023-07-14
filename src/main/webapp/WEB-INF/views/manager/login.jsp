@@ -18,8 +18,10 @@
 	            <input type="password" style="width: 100%; height: 78%; border: 2px solid #0C98FD; font-size: 17px;" id="user_pw" name="user_pw" value="" placeholder="비밀번호">
 	        </div>
 	        <div class="btnwrapper" style="font-size: 20px; font-weight: 600; width: 300px; height: 44px;">
-	            <button type="submit" style="width: 308px; height: 42px; font-size: 18px; font-weight: 600; border: none; background: #0C98FD; color: white; cursor: pointer;">로그인</button>
-	        </div>
+               <button type="submit" style="width: 308px; height: 42px; font-size: 18px; font-weight: 600; border: none; background: #0C98FD; color: white; cursor: pointer;">로그인</button>
+                <a href="list1.do" style="text-decoration: none; margin-left: 74px; color: #0C98FD; font-size: 18px; font-weight: 600;">비로그인으로 접속</a>
+           </div>
+	        
 	    </form>
     </div>
 </body>

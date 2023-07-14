@@ -31,15 +31,10 @@
  		<![CDATA[ 
  			select * from poster where poster_pk = #{posterpk}
  		]]> 	
- 	</select> 
- 	<select id="selectViewNum" resultMap = "posterMap" resultType="posterVO" parameterType="java.lang.Integer">
+ 	</select>  
+ 	<select id="updateViewNum" parameterType="posterVO">
  		<![CDATA[ 
- 			select view_num from poster where poster_pk = #{posterpk}
- 		]]> 	
- 	</select> 
- 	<select id="updateViewNum" resultMap = "posterMap" resultType="posterVO" parameterType="java.lang.Integer">
- 		<![CDATA[ 
- 			update poster set view_num = #{viewNum};
+ 			update poster set view_num = #{view_num}+1;
  		]]> 	
  	</select> 
  </mapper>

@@ -78,9 +78,9 @@ public class BoarderDAO {
 	
 	public boolean updateViewNum (int posterpk) {
 		boolean flag = false;
-		int viewNum = sqlSession.selectOne("mapper.poster.selectViewNum", posterpk);
-		viewNum = viewNum + 1;
-		if(sqlSession.update("mapper.poster.updateViewNum", viewNum)>0) {
+		PosterVO poster = sqlSession.selectOne("mapper.poster.selectPoster", posterpk);
+		
+		if(sqlSession.update("mapper.poster.updateViewNum", poster)>0) {
 			flag = true;
 		}
 		

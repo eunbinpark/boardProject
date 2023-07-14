@@ -15,9 +15,9 @@
     	  }
     	  let loginbtn = $('#loginbtn');
     	  if("${loginuser.user_id}"!=""){
-    		  $('#loginbtn').val("");
-    	  }else{
-    		  $('#loginbtn').val("로그인");
+    		
+    	  }else{  
+    		  loginbtn.css("display", "block");
     	  }
     	  
       });
@@ -42,7 +42,7 @@
         <nav class="navbar navbar-expand-lg bg-dark" style="height: 56px;">
             <div class="container-fluid" style="margin-right: 150px;">
               <div class="collapse navbar-collapse" id="navbarText" style="justify-content: flex-end; ">
-                <a id="loginbtn" class="navbar-brand" href="#" style="color: #fff; font-weight: 600;" value="로그인"></a>
+                <a id="loginbtn" class="navbar-brand" href="view_login.do" style="color: #fff; font-weight: 600; display: none" >로그인</a>
                 
               </div>
             </div>
@@ -80,7 +80,7 @@
         <hr>
         <h3 style="margin-bottom: 20px; font-weight: 700; margin-left: 57px;">댓글</h3>
         <div class="revbox" style="font-size: 17px; margin-left: 97px;">
-          <textarea rows="3" cols="97" style="border: 2px solid lightgray;" placeholder="로그인 후 이용가능합니다."></textarea>
+          <textarea rows="3" cols="97" style="border: 2px solid lightgray;" placeholder=""></textarea>
         </div>
 
         <div class="btnwrapper" style=" display:flex; justify-content:flex-end; margin-right: 350px;">
