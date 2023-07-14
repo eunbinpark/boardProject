@@ -56,8 +56,9 @@ public class PosterVO {
 	}
 	@Override
 	public String toString() {
-		return "PosterVO [poster_pk=" + poster_pk + ", title=" + title + ", author=" + author + ", writer_date="
-				+ writer_date + ", update_date=" + update_date + ", view_num=" + view_num + "]";
+		return "PosterVO [poster_pk=" + poster_pk + ", title=" + title + ", author=" + author + ", contents=" + contents
+				+ ", writer_date=" + writer_date + ", update_date=" + update_date + ", view_num=" + view_num + "]";
 	}
+	
 	
 }

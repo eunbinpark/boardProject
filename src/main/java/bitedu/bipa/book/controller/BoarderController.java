@@ -35,6 +35,7 @@ public class BoarderController {
 		ModelAndView mav = new ModelAndView();
 		ArrayList<PosterVO> list = boardService.searchBoardAll();
 		mav.addObject("list",list);
+		mav.addObject("loginuser", loginUser);
 		mav.setViewName("./manager/board_list");
 		return mav;
 	}
@@ -81,14 +82,17 @@ public class BoarderController {
 	    return mav;
 	}
 	@RequestMapping(value="/view_update.do", method=RequestMethod.GET)
-	public ModelAndView view_update(@ModelAttribute("poster") PosterVO poster) {
+	public ModelAndView view_update(@RequestParam("poster_pk") String poster_pk) {
+		System.out.println(poster_pk);
 		System.out.println("view_update");
 		ModelAndView mav = new ModelAndView();
+		PosterVO poster = boardService.selectPoster(Integer.parseInt(poster_pk));
+		System.out.println(poster_pk);
 		mav.addObject("poster",poster);
 		mav.setViewName("./manager/poster_update");
 		return mav;
 	}
-	@RequestMapping(value="/update.do", method=RequestMethod.POST)
+	@RequestMapping(value="/update.do", method=RequestMethod.GET)
 	public ModelAndView update(@ModelAttribute("update") PosterVO poster) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("update");
@@ -108,7 +112,7 @@ public class BoarderController {
 		System.out.println(poster_pk_int);
 		PosterVO selectPoster = boardService.selectPoster(poster_pk_int);
 		mav.addObject("select_poster", selectPoster);
-		
+		mav.addObject("loginuser", loginUser);
 		if(selectPoster.getAuthor().equals(loginUser.getUser_id())) {
 			
 			mav.addObject("flag", "true");

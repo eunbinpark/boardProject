@@ -65,8 +65,9 @@ public class BoarderDAO {
    }
 	public boolean poster_update(PosterVO poster) {
 		boolean flag = false;
-		
-		if(sqlSession.update("mapper.poster.update_poster")>0) {
+		System.out.println("title:" + poster.getTitle()+ " author: "+poster.getAuthor()+ " contents: " +poster.getContents());
+		System.out.println(poster.getPoster_pk());
+		if(sqlSession.update("mapper.poster.update_poster",poster)>0) {
 			flag = true;
 		}
 		return flag;

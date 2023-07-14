@@ -30,6 +30,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </head>
 <body style="margin: 0; padding: 0; font-family: 'Nanum Gothic Coding', monospace;">
+
 <form id="frm" method="" action="">
      <!-- 상단 헤더-->
      <header>
@@ -53,10 +54,11 @@
             </div>
             <div class="writecontent" style="font-size: 18px; margin-top: 20px; font-weight: 600; margin-left: 17px">
                 작성자 : <input type="text" style="border: none;" id="writer" name="author" value="${poster.author}" readonly>
+                <input type="hidden" id="poster_pk" name="poster_pk" value="${poster.poster_pk}" readonly>
             </div>
             
             <div class="contentbox" style="margin-top: 20px; font-size: 17px; margin-left: 97px;">
-                <textarea name="contents" rows="12" cols="97" style="border: 2px solid lightgray;" placeholder="내용을 입력하세요" value="${poster.contents }"></textarea>
+                <textarea name="contents" rows="12" cols="97" style="border: 2px solid lightgray;" placeholder="내용을 입력하세요" >${poster.contents }</textarea>
             </div>
         </div>
         <div class="btnwrapper" style="text-align: right; margin-right: 330px;">

@@ -6,6 +6,26 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+   <script type="text/javascript">
+      $(document).ready(function(){
+    	  
+    	  let loginbtn = $('#loginbtn');
+    	  if("${loginuser.user_id}"!=""){
+    		  $('#loginbtn').val("");
+    	  }else{
+    		  $('#loginbtn').val("로그인");
+    	  }
+      });
+      
+      $(document).ready(function(){
+         $('#canclebtn').on('click',function(){
+            $('#frm').attr('action','list.do');
+            $('#frm').attr('method','get');
+            $('#frm').submit();
+         });
+      });
+	</script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,11 +40,11 @@
 <body style="margin: 0; padding: 0; font-family: 'Nanum Gothic Coding', monospace;">
     <!-- 상단 헤더-->
     <header>
-        <nav class="navbar navbar-expand-lg bg-dark">
+        <nav class="navbar navbar-expand-lg bg-dark" style="height:56px;">
             <div class="container-fluid" style="margin-right: 150px;">
               <div class="collapse navbar-collapse" id="navbarText" style="justify-content: flex-end;">
-                <a class="navbar-brand" href="#" style="color: #fff; font-weight: 600;">로그인</a>
-                <a class="navbar-brand" href="#" style="color: #fff; font-weight: 600;">회원가입</a>
+                <a id="loginbtn" class="navbar-brand" href="#" style="color: #fff; font-weight: 600;" value="로그인"></a>
+                
               </div>
             </div>
           </nav>
