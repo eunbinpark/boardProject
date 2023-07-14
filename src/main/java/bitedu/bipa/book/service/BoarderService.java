@@ -37,5 +37,8 @@ public class BoarderService {
 		return dao.selectPosterVO(posterpk);
 	}
 
+	public boolean PlusViewNum(int posterpk) {
+		return dao.updateViewNum(posterpk);
+	}
 
 }
